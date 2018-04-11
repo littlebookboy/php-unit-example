@@ -2,8 +2,14 @@
 
 namespace PHPUnit\Example\Tests;
 
-class ExampleTest extends BaseTestCase
+/**
+ * 測試文章資料的 CRUD
+ * @package PHPUnit\Example\Tests
+ */
+class ArticleTest extends BaseTestCase
 {
+    protected $article;
+
     /**
      * 建構式
      */
@@ -21,12 +27,16 @@ class ExampleTest extends BaseTestCase
     }
 
     /**
-     * A basic test example.
+     * Create Article Test
      *
      * @return void
      */
-    public function testBasicTest()
+    public function test_測試新增一篇文章() // or test_a_article, testArticleAddingTest
     {
-        $this->assertTrue(true);
+        // Arrange：定義要使用的資料
+
+        // Act：定義要執行的動作
+
+        // Assert：斷言執行的結果
     }
 }
