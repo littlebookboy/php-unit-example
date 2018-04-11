@@ -45,10 +45,12 @@ class ArticleTest extends BaseTestCase
 
         // Act：定義要執行的動作
         $result = (new Article())->create($article);
-        $date = (new Article())->get($result['id']);
+        $getData = (new Article())->get($result['last_insert_id']);
 
         // Assert：斷言執行的結果
-        $this->assertEquals($result, $article);
-        $this->assertEquals($date, $article);
+        $this->assertEquals($article['title'], $getData['title']);
+        $this->assertEquals($article['content'], $getData['content']);
+        $this->assertEquals($article['created_at'], $getData['created_at']);
+        $this->assertEquals($article['updated_at'], $getData['updated_at']);
     }
 }
