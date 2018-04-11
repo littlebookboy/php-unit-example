@@ -45,8 +45,10 @@ class ArticleTest extends BaseTestCase
 
         // Act：定義要執行的動作
         $result = (new Article())->create($article);
+        $date = (new Article())->get($result['id']);
 
         // Assert：斷言執行的結果
         $this->assertEquals($result, $article);
+        $this->assertEquals($date, $article);
     }
 }
