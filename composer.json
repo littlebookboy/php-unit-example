@@ -16,7 +16,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "PHPUnit\\Example\\Tests\\": "src/"
+            "PHPUnit\\Example\\": "src/"
         }
     },
     "autoload-dev": {
