@@ -53,4 +53,18 @@ class ArticleTest extends BaseTestCase
         $this->assertEquals($article['created_at'], $getData['created_at']);
         $this->assertEquals($article['updated_at'], $getData['updated_at']);
     }
+
+    /**
+     * Update Article Test
+     *
+     * @return void
+     */
+    public function test_測試讀取一篇文章() // or test_a_article, testArticleAddingTest
+    {
+        // Arrange：定義要使用的資料
+
+        // Act：定義要執行的動作
+
+        // Assert：斷言執行的結果
+    }
 }
