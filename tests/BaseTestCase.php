@@ -9,6 +9,7 @@ class BaseTestCase extends TestCase
 {
     protected $db;
     protected $table;
+    protected $faker;
 
     /**
      * 建構式
@@ -18,7 +19,8 @@ class BaseTestCase extends TestCase
         parent::setUp();
 
         $this->table = 'articles';
-        $this->db = $this->sqlite_open('../database/sqlite.db');
+        $this->db = $this->sqliteOpen('../database/sqlite.db');
+        $this->faker = \Faker\Factory::create('zh_TW');
 
         $this->initDatabase();
     }
@@ -30,7 +32,7 @@ class BaseTestCase extends TestCase
     {
         parent::tearDown();
 
-        $this->db = $this->sqlite_open('../database/sqlite.db');
+        $this->db = $this->sqliteOpen('../database/sqlite.db');
         $this->db->exec('DROP TABLE if EXISTS `' . $this->table . '`');
         $this->db->close();
     }
@@ -43,7 +45,7 @@ class BaseTestCase extends TestCase
         $sql = [
             'CREATE TABLE if NOT EXISTS `' . $this->table . '`',
             '(',
-            '   id          int      PRIMARY KEY NOT NULL,',
+            '   id          integer  PRIMARY KEY AUTOINCREMENT,',
             '   title       text     NOT NULL,',
             '   content     text     NOT NULL,',
             '   created_at  datetime,',
@@ -61,7 +63,7 @@ class BaseTestCase extends TestCase
      * @param $mode
      * @return SQLite3
      */
-    protected function sqlite_open($location)
+    protected function sqliteOpen($location)
     {
         $handle = new SQLite3($location);
         return $handle;

@@ -1,6 +1,7 @@
 <?php
 
 namespace PHPUnit\Example\Tests;
+use Carbon\Carbon;
 
 /**
  * 測試文章資料的 CRUD
@@ -34,9 +35,18 @@ class ArticleTest extends BaseTestCase
     public function test_測試新增一篇文章() // or test_a_article, testArticleAddingTest
     {
         // Arrange：定義要使用的資料
+        $article = [
+            'title' => $this->faker->title,
+            'content' => $this->faker->realText(200),
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ];
+        $article = new Article();
 
         // Act：定義要執行的動作
+        $result = $article->create($article);
 
         // Assert：斷言執行的結果
+        $this->assertEquals($result, $article);
     }
 }
