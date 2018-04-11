@@ -2,6 +2,7 @@
 
 namespace PHPUnit\Example\Tests;
 use Carbon\Carbon;
+use PHPUnit\Example\Article;
 
 /**
  * 測試文章資料的 CRUD
@@ -41,10 +42,9 @@ class ArticleTest extends BaseTestCase
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon::now()->toDateTimeString(),
         ];
-        $article = new Article();
 
         // Act：定義要執行的動作
-        $result = $article->create($article);
+        $result = (new Article())->create($article);
 
         // Assert：斷言執行的結果
         $this->assertEquals($result, $article);
