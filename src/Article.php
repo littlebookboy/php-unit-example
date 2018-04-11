@@ -19,11 +19,51 @@ class Article
     }
 
     /**
+     * Article constructor.
+     */
+    public function __destruct()
+    {
+        $this->db->close();
+    }
+
+    /**
      * @param array $article
      */
     public function create(array $article)
     {
-        return $article;
+        $sql = '
+            INSERT INTO `' . $this->table . '` 
+                (
+                    title, 
+                    content, 
+                    created_at, 
+                    updated_at
+                )
+            VALUES 
+                (
+                    \'' . $article['title'] . '\', 
+                    \'' . $article['content'] . '\', 
+                    \'' . $article['created_at'] . '\', 
+                    \'' . $article['updated_at'] . '\'
+                );
+        ';
+        $this->db->query($sql);
+        $result = $this->db->query('SELECT last_insert_rowid() as last_insert_id;');
+        return $result->fetchArray();
+    }
+
+    /**
+     * @param int $id
+     */
+    public function get(int $id)
+    {
+        $sql = '
+            SELECT *
+            FROM `' . $this->table . '` 
+            WHERE `id` = ' . $id . '
+        ';
+        $result = $this->db->query($sql);
+        return $result->fetchArray(SQLITE3_ASSOC);
     }
 
     /**
