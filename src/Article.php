@@ -15,7 +15,14 @@ class Article
     public function __construct()
     {
         $this->table = 'articles';
-        $this->db = $this->sqliteOpen('../database/sqlite.db');
+        
+        // phpstorm 產生的 sqlite 對應路徑
+        if (file_exists('../database/sqlite.db')) {
+            $this->db = $this->sqliteOpen('../database/sqlite.db');
+        } else {
+            // vscode 產生的 sqlite 對應路徑
+            $this->db = $this->sqliteOpen('./database/sqlite.db');
+        }
     }
 
     /**
@@ -67,6 +74,7 @@ class Article
     }
 
     /**
+<<<<<<< HEAD
      * @param string $title
      */
     public function getByTitle(string $title)
@@ -113,6 +121,8 @@ class Article
     }
 
     /**
+=======
+>>>>>>> master
      * sqlite_open
      * @param $location
      * @param $mode
