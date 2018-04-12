@@ -66,37 +66,5 @@ class BaseTestCase extends TestCase
         $handle = new SQLite3($location);
         return $handle;
     }
-
-    /**
-     * sqlite_query
-     * @param $dbHandle
-     * @param $query
-     * @return
-     */
-    protected function sqlite_query($dbHandle, $query)
-    {
-        $array['dbHandle'] = $dbHandle;
-        $array['query'] = $query;
-        $result = $dbHandle->query($query);
-        return $result;
-    }
-
-    /**
-     * sqlite_fetch_array
-     * @param $result
-     * @param $type
-     * @return
-     */
-    protected function sqlite_fetch_array(&$result, $type)
-    {
-        $i = 0;
-        while ($result->columnName($i)) {
-            $columns[] = $result->columnName($i);
-            $i++;
-        }
-
-        $resx = $result->fetchArray(SQLITE3_ASSOC);
-        return $resx;
-    }
 }
 
