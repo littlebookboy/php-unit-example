@@ -67,6 +67,20 @@ class Article
     }
 
     /**
+     * @param string $title
+     */
+    public function getByTitle(string $title)
+    {
+        $sql = '
+            SELECT *
+            FROM `' . $this->table . '` 
+            WHERE `title` = \'' . $title . '\'
+        ';
+        $result = $this->db->query($sql);
+        return $result->fetchArray(SQLITE3_ASSOC);
+    }
+
+    /**
      * sqlite_open
      * @param $location
      * @param $mode

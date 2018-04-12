@@ -62,9 +62,33 @@ class ArticleTest extends BaseTestCase
     public function test_測試修改一篇文章()
     {
         // Arrange：定義要使用的資料
+        // 準備要被讀取的資料對象
+        $title = '單元測試練習';
+        $content = $this->faker->realText(200);
+        $updateTitle = '古月仙人';
+        $updateContent = '世外悠悠隔人間，不忍淒淒亂世煙。慨懷瀟瀟任風逝，雲靄冉冉繞仙山';
+        $article = [
+            'id' => 1,
+            'title' => $title,
+            'content' => $content,
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ];
+        $updateData = [
+            'title' => $updateTitle,
+            'content' => $updateContent,
+        ];
 
         // Act：定義要執行的動作
+        $articleObject = new Article();
+        $articleObject->create($article); // 新增
+        $getArticle = $articleObject->get(1); // 讀取
+        $updateArticleResult = $articleObject->update(1, $updateData); // 修改
 
         // Assert：斷言執行的結果
+        $this->assertEquals($title, $getArticle['title']);
+        $this->assertEquals($content, $getArticle['content']);
+        $this->assertEquals($updateTitle, $updateArticleResult['title']);
+        $this->assertEquals($updateContent, $updateArticleResult['content']);
     }
 }
