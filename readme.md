@@ -154,3 +154,9 @@ ExampleTest.php
             $this->assertTrue(true);
         }
     }
+    
+## 參考資料
+
+1. [點燈坊：如何測試PHP原生函式?](http://oomusou.io/tdd/tdd-phpunit-native-function/)
+1. [點燈坊：如何使用 PHPUnit 測試 private 與 protected method?](http://oomusou.io/phpunit/phpunit-test-private/)
+1. [PHPUnit 手冊](https://phpunit.de/manual/6.5/zh_cn/index.html)
