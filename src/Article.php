@@ -81,6 +81,38 @@ class Article
     }
 
     /**
+     * @param int $id
+     * @param array $updateData
+     * @return array
+     */
+    public function update(int $id, array $updateData)
+    {
+        $title = (!empty($updateData['title'])) ? '`title` = \'' . $updateData['title'] . '\' ' : '';
+        $content = (!empty($updateData['content'])) ? '`content` = \'' . $updateData['content'] . '\' ' : '';
+        $update = '';
+        if ($title !== '' && $content !== '') {
+            $update = $title . ',' . $content;
+        }
+        if ($title !== '' && $content === '') {
+            $update = $title;
+        }
+        if ($title === '' && $content !== '') {
+            $update = $content;
+        }
+        if ($title === '' && $content === '') {
+            return $this->get($id);
+        }
+        $sql = '
+            UPDATE `' . $this->table . '` 
+            SET
+                ' . $update . ' 
+            WHERE `id` = ' . $id . ';
+        ';
+        $this->db->query($sql);
+        return $this->get($id);
+    }
+
+    /**
      * sqlite_open
      * @param $location
      * @param $mode
