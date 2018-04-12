@@ -18,7 +18,15 @@ class BaseTestCase extends TestCase
         parent::setUp();
 
         $this->table = 'articles';
-        $this->db = $this->sqlite_open('../database/sqlite.db');
+        $this->faker = \Faker\Factory::create('zh_TW');
+
+        // phpstorm 產生的 sqlite 對應路徑
+        if (file_exists('../database/sqlite.db')) {
+            $this->db = $this->sqliteOpen('../database/sqlite.db');
+        } else {
+            // vscode 產生的 sqlite 對應路徑
+            $this->db = $this->sqliteOpen('./database/sqlite.db');
+        }
 
         $this->initDatabase();
     }
@@ -30,7 +38,14 @@ class BaseTestCase extends TestCase
     {
         parent::tearDown();
 
-        $this->db = $this->sqlite_open('../database/sqlite.db');
+        // phpstorm 產生的 sqlite 對應路徑
+        if (file_exists('../database/sqlite.db')) {
+            $this->db = $this->sqliteOpen('../database/sqlite.db');
+        } else {
+            // vscode 產生的 sqlite 對應路徑
+            $this->db = $this->sqliteOpen('./database/sqlite.db');
+        }
+
         $this->db->exec('DROP TABLE if EXISTS `' . $this->table . '`');
         $this->db->close();
     }
