@@ -59,7 +59,7 @@ class ArticleTest extends BaseTestCase
      *
      * @return void
      */
-    public function test_測試讀取一篇文章()
+    public function test_測試修改一篇文章()
     {
         // Arrange：定義要使用的資料
 
