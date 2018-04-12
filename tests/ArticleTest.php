@@ -62,9 +62,14 @@ class ArticleTest extends BaseTestCase
     public function test_測試刪除一篇文章()
     {
         // Arrange：定義要使用的資料
+        // 準備一組要用來刪除的資料
 
         // Act：定義要執行的動作
+        // 新增一筆文章
+        // 刪除一筆文章
+        // 讀取對應被刪除的文章
 
         // Assert：斷言執行的結果
+        // 比對「讀取對應被刪除的文章」應為空
     }
 }
